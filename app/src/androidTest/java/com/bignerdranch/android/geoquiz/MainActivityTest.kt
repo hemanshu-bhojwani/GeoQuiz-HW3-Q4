@@ -53,7 +53,7 @@ class MainActivityTest {
         val userAnswer = true
         val cheated = false
 
-        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated, correctAnswer = true)
         assert(messageResId == R.string.correct_toast)
     }
 
@@ -63,7 +63,7 @@ class MainActivityTest {
         val userAnswer = false
         val cheated = false
 
-        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated, correctAnswer = false)
         assert(messageResId == R.string.incorrect_toast)
     }
 
@@ -73,7 +73,7 @@ class MainActivityTest {
         val userAnswer = true
         val cheated = true
 
-        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated, correctAnswer = true)
         assert(messageResId == R.string.judgment_toast)
     }
 

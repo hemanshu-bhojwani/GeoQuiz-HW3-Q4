@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bignerdranch.android.geoquiz.databinding.ActivityCheatBinding
 
 const val EXTRA_ANSWER_SHOWN = "com.bignerdranch.android.geoquiz.answer_shown"
+const val EXTRA_ANSWER_CHEATED = "com.bignerdranch.android.geoquiz.answer_cheated"
 private const val EXTRA_ANSWER_IS_TRUE =
     "com.bignerdranch.android.geoquiz.answer_is_true"
 
@@ -37,6 +38,7 @@ class CheatActivity : AppCompatActivity() {
     private fun setAnswerShownResult(isAnswerShown: Boolean) {
         val data = Intent().apply {
             putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
+            putExtra(EXTRA_ANSWER_CHEATED, true)
         }
         setResult(Activity.RESULT_OK, data)
     }

@@ -87,15 +87,19 @@ class MainActivity : AppCompatActivity() {
         binding.questionTextView.setText(questionTextResId)
     }
 
-    private fun checkAnswer(userAnswer: Boolean) {
+    fun evaluateAnswer(userAnswer: Boolean, cheated:Boolean) : Int {
         val correctAnswer = quizViewModel.currentQuestionAnswer
-        val cheated = quizViewModel.isCheater
 
         val messageResId = when {
-            quizViewModel.isCheater -> R.string.judgment_toast
+            cheated -> R.string.judgment_toast
             userAnswer == correctAnswer -> R.string.correct_toast
             else -> R.string.incorrect_toast
         }
+        return messageResId
+    }
+    private fun checkAnswer(userAnswer: Boolean) {
+        val cheated = quizViewModel.isCheater
+        val messageResId =  evaluateAnswer(userAnswer,cheated)
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
             .show()
 

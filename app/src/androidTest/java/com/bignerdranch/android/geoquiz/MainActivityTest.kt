@@ -46,4 +46,36 @@ class MainActivityTest {
         scenario.recreate()
         onView(withId(R.id.question_text_view)).check(matches(withText(R.string.question_oceans)))
     }
+
+    @Test
+    fun testCorrectAnswerNotCheated() {
+        val mainActivity = MainActivity()
+        val userAnswer = true
+        val cheated = false
+
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        assert(messageResId == R.string.correct_toast)
+    }
+
+    @Test
+    fun testIncorrectAnswerNotCheated() {
+        val mainActivity = MainActivity()
+        val userAnswer = false
+        val cheated = false
+
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        assert(messageResId == R.string.incorrect_toast)
+    }
+
+    @Test
+    fun testCheated() {
+        val mainActivity = MainActivity()
+        val userAnswer = true
+        val cheated = true
+
+        val messageResId = mainActivity.evaluateAnswer(userAnswer, cheated)
+        assert(messageResId == R.string.judgment_toast)
+    }
+
+
 }
